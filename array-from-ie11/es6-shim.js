@@ -255,12 +255,22 @@
   };
   var isArguments = isStandardArguments(arguments) ? isStandardArguments : isLegacyArguments;
 
+
+  var isNativeSymbol = function isNativeSymbol(value) {
+    return typeof globals.Symbol === 'function' && typeof x === 'symbol';
+  }
+
+  // idea from https://github.com/zloirock/core-js/blob/master/packages/core-js/modules/es.symbol.js#L88
+  var isShimSymbol = function isShimSymbol(value) {
+    return typeof globals.Symbol === 'function' && Object(x) instanceof globals.Symbol;
+  }
+
   var Type = {
     primitive: function (x) { return x === null || (typeof x !== 'function' && typeof x !== 'object'); },
     string: function (x) { return _toString(x) === '[object String]'; },
     regex: function (x) { return _toString(x) === '[object RegExp]'; },
     symbol: function (x) {
-      return typeof globals.Symbol === 'function' && typeof x === 'symbol';
+      return isNativeSymbol(x) || isShimSymbol(x);
     }
   };
 
