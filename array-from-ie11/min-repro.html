@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/symbol-es6@0.1.2/symbol-es6.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.5/es6-shim.js"></script>
+  <script>
+    // this line will throw error
+    var set = new Set(getIterable([1]));
+
+    // this method is extracted from google maps 3.38
+    function getIterable(a) {
+      var iter = "undefined" != typeof Symbol && Symbol.iterator && a[Symbol.iterator];
+      return iter ? iter.call(a) : { next: getIterator(a) };
+    };
+
+    function getIterator(a) {
+      var index = 0;
+      return function () {
+        return index < a.length ? { done: !1, value: a[index++] } : { done: !0 };
+      };
+    };
+  </script>
+
+</body>
+
+</html>
