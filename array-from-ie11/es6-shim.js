@@ -257,7 +257,7 @@
 
 
   var isNativeSymbol = function isNativeSymbol(value) {
-    return typeof globals.Symbol === 'function' && typeof x === 'symbol';
+    return typeof globals.Symbol === 'function' && typeof value === 'symbol';
   }
 
   // idea from https://github.com/zloirock/core-js/blob/master/packages/core-js/modules/es.symbol.js#L88
