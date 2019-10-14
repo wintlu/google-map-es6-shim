@@ -262,7 +262,7 @@
 
   // idea from https://github.com/zloirock/core-js/blob/master/packages/core-js/modules/es.symbol.js#L88
   var isShimSymbol = function isShimSymbol(value) {
-    return typeof globals.Symbol === 'function' && Object(value) instanceof globals.Symbol;
+    return typeof globals.Symbol === 'function' && Object(value) instanceof globals.Symbol; 
   }
 
   var Type = {
